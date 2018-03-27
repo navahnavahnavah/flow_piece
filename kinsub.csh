@@ -10,7 +10,7 @@
 # you want to run.
 #
 # set the name of the job
-#PBS -N fp_550_250_pres_q1
+#PBS -N asmp_q0
 #
 # set the output and error files
 #PBS -o /data/navah/fp_output/$PBS_JOBNAME/mOutG.txt
@@ -44,25 +44,20 @@ set PARAM_CRASHSTEP='2'
 
 
 # model parameters go here i guess
-set PARAM_O='550'
-set PARAM_W='300'
-set PARAM_W_RHS='25'
-set PARAM_H='200'
-# set PARAM_O_RHS='-50'
-set PARAM_O_RHS='0'
-set PARAM_H_S='250'
+set PARAM_O         = '550'
+set PARAM_W         = '300'
+set PARAM_W_RHS     = '25'
+set PARAM_H         = '200'
+set PARAM_O_RHS     = '0'
+set PARAM_H_S       = '250'
 
-
-
-## git stuff
-
-
-
-set PARAM_PAQ = '1e-12'
+# flow_piece / benchmark parameters
+set PARAM_MYR_FIX   = '5.0'
+set PARAM_PAQ       = '1e-12'
 
 ## FRACTURE PARAMS
-set PARAM_F_DX = '-1.1'
-set PARAM_F_POR = '2.5e-5'
+set PARAM_F_DX      = '-1.1'
+set PARAM_F_POR     = '2.5e-5'
 
 
 
@@ -132,7 +127,7 @@ echo $PARAM_PATH
 #cd $SCRDIR
 cd ${WORKDIR}
 ##wait
-${LAUNCH} -n {$NCPU} -hostfile ${PBS_NODEFILE} --nooversubscribe ${WORKDIR}/${PROGNAME} ${PARAM_RESTART} ${PARAM_PATH} ${PARAM_CRASHSTEP} ${PARAM_O} ${PARAM_W} ${PARAM_W_RHS} ${PARAM_H} ${PARAM_O_RHS} ${PARAM_PAQ} ${PARAM_F_DX} ${PARAM_F_POR} ${PARAM_H_S}
+${LAUNCH} -n {$NCPU} -hostfile ${PBS_NODEFILE} --nooversubscribe ${WORKDIR}/${PROGNAME} ${PARAM_RESTART} ${PARAM_PATH} ${PARAM_CRASHSTEP} ${PARAM_O} ${PARAM_W} ${PARAM_W_RHS} ${PARAM_H} ${PARAM_O_RHS} ${PARAM_PAQ} ${PARAM_F_DX} ${PARAM_F_POR} ${PARAM_H_S} ${PARAM_MYR_FIX}
 
 
 # wait

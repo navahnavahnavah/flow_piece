@@ -33,10 +33,13 @@ real(4) :: fives(2,yn), tens(2,yn), twentyfives(2,xn), fifties(2,xn)
 character(len=300) :: path, path2, path_final, crashstring, restartstring, iso_path
 character(len=300) :: param_o_string, param_w_string, param_w_rhs_string, param_h_string, param_o_rhs_string, param_tsw_string
 character(len=300) :: param_dic_string, param_scope_string, param_trace_string, param_ch_string, param_f_dx_string, param_f_k_string
-character(len=300) :: param_paq_string, param_ch_rhs_string, param_f_freq_string, param_f_por_string, param_h_s_string
+character(len=300) :: param_paq_string, param_ch_rhs_string, param_f_freq_string, param_f_por_string, param_h_s_string, param_myr_fix_string
 integer :: in, crashstep, restart, param_trace
 real(4):: param_o, param_w, param_w_rhs, param_h, param_o_rhs, param_tsw, param_dic, param_scope, param_ch
-real(4) :: param_paq, param_ch_rhs, param_f_dx, param_f_k, param_f_freq, param_f_por, param_h_s
+real(4) :: param_paq, param_ch_rhs, param_f_dx, param_f_k, param_f_freq, param_f_por, param_h_s, param_myr_fix
+
+
+real(4) :: frac6_fix
 
 
 ! TRANSPOSED
@@ -82,6 +85,7 @@ call getarg(9,param_paq_string)
 call getarg(10,param_f_dx_string)
 call getarg(11,param_f_por_string)
 call getarg(12,param_h_s_string)
+call getarg(13,param_myr_fix_string)
 
 
 ! parameter 1
@@ -123,6 +127,9 @@ read (param_f_por_string, *) param_f_por
 
 ! parameter 12
 read (param_h_s_string, *) param_h_s
+
+! parameter 13
+read (param_myr_fix_string, *) param_myr_fix
 
 
 

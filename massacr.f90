@@ -656,8 +656,9 @@ if (restart .ne. 1) then
 ! 					write(*,*) " "
 
 					!# temporary frac6 prescription
-					if (j .gt. tn/2) then
-						frac6(jj,1) = 0.30
+					frac6_fix = param_myr_fix * param_h * rho_fluid / ( (3.14e7) * phi(1,1) )
+					if (j .gt. tn/4) then
+						frac6(jj,1) = frac6_fix !0.30
 					end if
 
 				end if
