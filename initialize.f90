@@ -34,9 +34,11 @@ character(len=300) :: path, path2, path_final, crashstring, restartstring, iso_p
 character(len=300) :: param_o_string, param_w_string, param_w_rhs_string, param_h_string, param_o_rhs_string, param_tsw_string
 character(len=300) :: param_dic_string, param_scope_string, param_trace_string, param_ch_string, param_f_dx_string, param_f_k_string
 character(len=300) :: param_paq_string, param_ch_rhs_string, param_f_freq_string, param_f_por_string, param_h_s_string, param_myr_fix_string
+character(len=300) :: param_q_lith_string, param_crust_age_string, param_age_only_string
 integer :: in, crashstep, restart, param_trace
-real(4):: param_o, param_w, param_w_rhs, param_h, param_o_rhs, param_tsw, param_dic, param_scope, param_ch
+real(4) :: param_o, param_w, param_w_rhs, param_h, param_o_rhs, param_tsw, param_dic, param_scope, param_ch
 real(4) :: param_paq, param_ch_rhs, param_f_dx, param_f_k, param_f_freq, param_f_por, param_h_s, param_myr_fix
+real(4) :: param_q_lith, param_crust_age, param_age_only
 
 
 real(4) :: frac6_fix
@@ -86,7 +88,9 @@ call getarg(10,param_f_dx_string)
 call getarg(11,param_f_por_string)
 call getarg(12,param_h_s_string)
 call getarg(13,param_myr_fix_string)
-
+call getarg(14,param_q_lith_string)
+call getarg(15,param_crust_age_string)
+call getarg(16,param_age_only_string)
 
 ! parameter 1
 read (restartstring, *) restart
@@ -130,6 +134,22 @@ read (param_h_s_string, *) param_h_s
 
 ! parameter 13
 read (param_myr_fix_string, *) param_myr_fix
+
+! parameter 14
+read (param_q_lith_string, *) param_q_lith
+
+! parameter 15
+read (param_crust_age_string, *) param_crust_age
+
+! parameter 16
+read (param_age_only_string, *) param_age_only
+
+! param_age_only toggle
+if (param_age_only .eq. 1.0) then
+	param_q_lith = (510.0 * (param_crust_age**(-0.5))) / 1000.0
+	! param_h_s = param_crust_age * 200.0
+	param_h_s = 100.0 + (param_crust_age * 100.0)
+end if
 
 
 
@@ -640,7 +660,7 @@ function h_bc(h_in)
 
 	do p = 1,xn
 		!rip_lith_y(p) = 0.5 / (((0.75+0.035*dx*p/1000.0)**0.5))
-		rip_lith_y(p) = 0.55
+		rip_lith_y(p) = param_q_lith !0.55
 	end do
 
 !((0.75+0.035*50*x/1000)

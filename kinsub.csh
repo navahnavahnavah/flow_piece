@@ -10,17 +10,17 @@
 # you want to run.
 #
 # set the name of the job
-#PBS -N asmp_q0
+##PBS -N ao_1.00
 #
 # set the output and error files
-#PBS -o /data/navah/fp_output/$PBS_JOBNAME/mOutG.txt
-#PBS -e /data/navah/fp_output/$PBS_JOBNAME/mErrG.txt
+#PBS -o /data/navah/fp_output/par_k_10_s_200_h_600_new_new/par_q_30.0/$PBS_JOBNAME/mOutG.txt
+#PBS -e /data/navah/fp_output/par_k_10_s_200_h_600_new_new/par_q_30.0/$PBS_JOBNAME/mErrG.txt
 #PBS -m abe -M navah@uchicago.edu
 # set the number of nodes to use, and number of processors
 # to use per node
 
 
-#PBS -l nodes=compute-1-3:ppn=1
+##PBS -l nodes=compute-1-3:ppn=1
 
 
 # or, if using only one node, you can do it this way too
@@ -39,7 +39,7 @@ module load intel/intel-12
 module load mpi/mvapich2/intel
 
 set PARAM_RESTART='0'
-set PARAM_PATH='/data/navah/fp_output/'$PBS_JOBNAME'/'
+set PARAM_PATH='/data/navah/fp_output/par_k_10_s_200_h_600_new_new/par_q_30.0/'$PBS_JOBNAME'/'
 set PARAM_CRASHSTEP='2'
 
 
@@ -47,23 +47,23 @@ set PARAM_CRASHSTEP='2'
 set PARAM_O         = '550'
 set PARAM_W         = '300'
 set PARAM_W_RHS     = '25'
-set PARAM_H         = '200'
 set PARAM_O_RHS     = '0'
-set PARAM_H_S       = '250'
+
 
 # flow_piece / benchmark parameters
-set PARAM_MYR_FIX   = '5.0'
-set PARAM_PAQ       = '1e-12'
+set PARAM_PAQ       = '1e-10'
 
 ## FRACTURE PARAMS
 set PARAM_F_DX      = '-1.1'
 set PARAM_F_POR     = '2.5e-5'
 
-
-
-
-
-
+# flow_piece runtime parameters
+set PARAM_H         = '600' # [m]
+set PARAM_H_S       = '250' # [m]
+set PARAM_MYR_FIX   = '30.0' # [m/yr]
+set PARAM_Q_LITH    = '0.1' # [W/m^2]
+#set PARAM_CRUST_AGE = '1.00' # [Myr]
+set PARAM_AGE_ONLY  = '1'   # toggle
 
 
 echo $PARAM_PATH
@@ -127,7 +127,7 @@ echo $PARAM_PATH
 #cd $SCRDIR
 cd ${WORKDIR}
 ##wait
-${LAUNCH} -n {$NCPU} -hostfile ${PBS_NODEFILE} --nooversubscribe ${WORKDIR}/${PROGNAME} ${PARAM_RESTART} ${PARAM_PATH} ${PARAM_CRASHSTEP} ${PARAM_O} ${PARAM_W} ${PARAM_W_RHS} ${PARAM_H} ${PARAM_O_RHS} ${PARAM_PAQ} ${PARAM_F_DX} ${PARAM_F_POR} ${PARAM_H_S} ${PARAM_MYR_FIX}
+${LAUNCH} -n {$NCPU} -hostfile ${PBS_NODEFILE} --nooversubscribe ${WORKDIR}/${PROGNAME} ${PARAM_RESTART} ${PARAM_PATH} ${PARAM_CRASHSTEP} ${PARAM_O} ${PARAM_W} ${PARAM_W_RHS} ${PARAM_H} ${PARAM_O_RHS} ${PARAM_PAQ} ${PARAM_F_DX} ${PARAM_F_POR} ${PARAM_H_S} ${PARAM_MYR_FIX} ${PARAM_Q_LITH} ${PARAM_CRUST_AGE} ${PARAM_AGE_ONLY}
 
 
 # wait

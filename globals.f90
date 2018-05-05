@@ -6,16 +6,19 @@ save
 
 
 ! JDF PARAMS WITH FRACTURE AUGUST 9
+! integer, parameter :: testInt = 31, xn =4001, yn = 102, altnum = 190,  cell = 1 !50000
+! integer, parameter ::  g_pri = 5, g_sec = 114, g_sol = 15, g_med = 7, g_iso = 2, cstep = 1, ar = 1 ! cstep = 1000
+! integer, parameter :: tn = 400000, mstep = 80000, wscale = 1, ison = 10, inertn = 10! ison = 10000, inertn = 100000
 integer, parameter :: testInt = 31, xn =2001, yn = 102, altnum = 190,  cell = 1 !50000
 integer, parameter ::  g_pri = 5, g_sec = 114, g_sol = 15, g_med = 7, g_iso = 2, cstep = 1, ar = 1 ! cstep = 1000
-integer, parameter :: tn = 20000, mstep = 2000, wscale = 1, ison = 10, inertn = 10! ison = 10000, inertn = 100000
+integer, parameter :: tn = 200000, mstep = 40000, wscale = 1, ison = 10, inertn = 10! ison = 10000, inertn = 100000
 integer :: active_cells
 integer, parameter :: particle_sat = 1, inert_sat = 10
 real(4) :: cstep_int
 integer :: cstep_num
 real(4) :: u_1d
 real(4) :: x_min = 0.0, x_max = 100000.0, y_min = -2500.0, y_max = 25.0 !y_min = -1650.0, y_max = 25.0
-real(4) :: t_min = 0.0, t_max = 1.57e12!23.55e13 !9.42e13 !
+real(4) :: t_min = 0.0, t_max = 1.57e13!23.55e13 !9.42e13 !
 real(4) :: ki = .76, ra = 100.0, viscosity = .001, cp = 1173.0, alpha =4.0e-4, k, calc0, psi_round, psi_round2 !alpha =4.0e-5 !cp = 1175.0
 integer :: thresh=0, theta0
 real(4) :: in_left1, in_left2, in_right1, in_right2, in_left3, in_right3, max_left, max_right, fac_left, fac_right

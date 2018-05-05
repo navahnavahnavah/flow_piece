@@ -424,9 +424,9 @@ if (mod(j,mstep/10) .eq. 0) then
 	write(*,*) " "
 	write(*,*) " "
 	write(*,*) " "
-		OPEN(UNIT=88, status = 'replace', FILE=trim(path_final) // 'dynamicSubStep.txt')
-		write(88,*) mod(j,mstep)
-		close ( 88 )
+		! OPEN(UNIT=88, status = 'replace', FILE=trim(path_final) // 'dynamicSubStep.txt')
+		! write(88,*) mod(j,mstep)
+		! close ( 88 )
 end if
 
 ! write(*,*) " "
@@ -657,7 +657,7 @@ if (restart .ne. 1) then
 
 					!# temporary frac6 prescription
 					frac6_fix = param_myr_fix * param_h * rho_fluid / ( (3.14e7) * phi(1,1) )
-					if (j .gt. tn/4) then
+					if (j .gt. tn/10) then
 						frac6(jj,1) = frac6_fix !0.30
 					end if
 
@@ -896,12 +896,12 @@ if (restart .ne. 1) then
 
 
 
-yep = write_matrix ( xn, yn, real(rhs0,kind=4), trim(path) // 'rhs.txt' )
-yep = write_matrix ( xn, yn, real(psi,kind=4), trim(path) // 'psi.txt' )
+! yep = write_matrix ( xn, yn, real(rhs0,kind=4), trim(path) // 'rhs.txt' )
+! yep = write_matrix ( xn, yn, real(psi,kind=4), trim(path) // 'psi.txt' )
 yep = write_matrix ( xn, yn, real(h,kind=4), trim(path) // 'h.txt' )
-
-yep = write_matrix ( xn, yn, real(u,kind=4), trim(path) // 'u.txt' )
-yep = write_matrix ( xn, yn, real(v,kind=4), trim(path) // 'v.txt' )
+!
+! yep = write_matrix ( xn, yn, real(u,kind=4), trim(path) // 'u.txt' )
+! yep = write_matrix ( xn, yn, real(v,kind=4), trim(path) // 'v.txt' )
 
 
 
@@ -916,18 +916,18 @@ yep = write_matrix ( xn, yn, real(v,kind=4), trim(path) // 'v.txt' )
 
 yep = write_matrix ( yn, 2, real(frac6, kind = 4), trim(path) // 'frac6.txt' )
 yep = write_matrix ( yn, 2, real(temp6, kind = 4), trim(path) // 'temp6.txt' )
-yep = write_matrix ( xn, yn/2, real(mask(:,(yn/2)+1:), kind = 4), trim(path) // 'mask.txt' )
+! yep = write_matrix ( xn, yn/2, real(mask(:,(yn/2)+1:), kind = 4), trim(path) // 'mask.txt' )
 yep = write_matrix ( xn, yn/2, real(maskP(:,(yn/2)+1:), kind = 4), trim(path) // 'maskP.txt' )
 yep = write_vec ( xn, real(x,kind=4), trim(path) // 'x.txt' )
 yep = write_vec ( yn/2, real(y(yn/2:),kind=4), trim(path) // 'y.txt' )
 yep = write_matrix (xn*tn/(mstep*ar), yn/2, real(hmat(:,(yn/2)+1:), kind = 4), trim(path) // 'hMat.txt' )
 yep = write_matrix (xn*tn/(mstep*ar), yn/2, real(psimat(:,(yn/2)+1:),kind=4), trim(path) // 'psiMat.txt' )
 ! yep = write_matrix (xn*tn/(mstep*ar), yn/2, real(rhomat(:,(yn/2)+1:),kind=4), trim(path) // 'rhoMat.txt' )
-yep = write_matrix (xn*tn/(mstep*ar), yn/2, real(umat(:,(yn/2)+1:), kind = 4), trim(path) // 'uMat.txt' )
-yep = write_matrix (xn*tn/(mstep*ar), yn/2, real(vmat(:,(yn/2)+1:),kind=4), trim(path) // 'vMat.txt' )
-yep = write_matrix ( xn, yn/2,real(lambdaMat(:,(yn/2)+1:),kind=4), trim(path) // 'lambdaMat.txt' )
+! yep = write_matrix (xn*tn/(mstep*ar), yn/2, real(umat(:,(yn/2)+1:), kind = 4), trim(path) // 'uMat.txt' )
+! yep = write_matrix (xn*tn/(mstep*ar), yn/2, real(vmat(:,(yn/2)+1:),kind=4), trim(path) // 'vMat.txt' )
+! yep = write_matrix ( xn, yn/2,real(lambdaMat(:,(yn/2)+1:),kind=4), trim(path) // 'lambdaMat.txt' )
 yep = write_matrix ( xn, yn/2,real(permeability(:,(yn/2)+1:),kind=4), trim(path) // 'permeability.txt' )
-yep = write_matrix ( xn, yn/2,real(phi(:,(yn/2)+1:),kind=4), trim(path) // 'phi.txt' )
+! yep = write_matrix ( xn, yn/2,real(phi(:,(yn/2)+1:),kind=4), trim(path) // 'phi.txt' )
 !yep = write_matrix ( xn/cell, yn/cell, real(phiCoarse,kind=4), trim(path) // 'phiCoarse.txt' )
 
 !if (maxval(medium(:,:,5)) .eq. 1.0) then
@@ -2878,7 +2878,7 @@ use globals
 
 
 !
- 	write ( string, '(a1,i8,a1,i8,a1,i8,a1)' ) '(', m, 'g', 24, '.', 16, ')'
+ 	write ( string, '(a1,i8,a1,i8,a1,i8,a1)' ) '(', m, 'g', 14, '.', 6, ')'
 ! 	!write ( string, '(a1,i8,a1,i8,a1,i8,a1)' ) '(', m, 'g', 14, '.', 6, ')'
 !
 !     do j = 1, n
@@ -2888,7 +2888,7 @@ use globals
     do j = 1, n
       write ( unit0, 400) table(1:m,j)
     end do
-400 FORMAT(<m>g24.16)
+400 FORMAT(<m>g14.6)
 
 
   close ( unit = unit0 )
