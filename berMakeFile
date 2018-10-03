@@ -1,6 +1,6 @@
-# 
-#Makefile for the geometry program 
-# 
+#
+#Makefile for the geometry program
+#
 
 # macros go here
 FC=mpif90
@@ -20,7 +20,7 @@ globals:
 
 initialize.o: globals.o
 initialize: globals.o
- 
+
 ###alteration.o: globals.o
 ###alteration: globals.o
 
@@ -31,13 +31,13 @@ massacr: globals.o initialize.o
 
 %: %.o
 	$(FC) $(FCFLAGS) -o $@ $^ $(LDFLAGS)
-	
+
 %.o: %.f90
 	$(FC) $(FCFLAGS) -c $<
 
 %.o: %.F90
 	$(FC) $(FCFLAGS) -c $<
-	
+
 
 # Utility targets
 .PHONY: clean veryclean
