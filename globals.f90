@@ -11,7 +11,7 @@ save
 ! integer, parameter :: tn = 400000, mstep = 80000, wscale = 1, ison = 10, inertn = 10! ison = 10000, inertn = 100000
 integer, parameter :: testInt = 31, xn =4001, yn = 102, altnum = 190,  cell = 1 !50000
 integer, parameter ::  g_pri = 5, g_sec = 114, g_sol = 15, g_med = 7, g_iso = 2, cstep = 1, ar = 1 ! cstep = 1000
-integer, parameter :: tn = 400000, mstep = 80000, wscale = 1, ison = 10, inertn = 10! ison = 10000, inertn = 100000
+integer, parameter :: tn = 40000, mstep = 4000, wscale = 1, ison = 10, inertn = 10! ison = 10000, inertn = 100000
 integer :: active_cells
 integer, parameter :: particle_sat = 1, inert_sat = 10
 real(4) :: cstep_int

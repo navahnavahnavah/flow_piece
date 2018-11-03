@@ -13,8 +13,8 @@
 ##PBS -N ao_1.00
 #
 # set the output and error files
-#PBS -o /data/navah/fp_output/oc_k_10_s_100_h_200/par_q_1.0/$PBS_JOBNAME/mOutG.txt
-#PBS -e /data/navah/fp_output/oc_k_10_s_100_h_200/par_q_1.0/$PBS_JOBNAME/mErrG.txt
+#PBS -o /data/navah/fp_output/od_k_10_s_100_h_200_ts/par_q_50.0/$PBS_JOBNAME/mOutG.txt
+#PBS -e /data/navah/fp_output/od_k_10_s_100_h_200_ts/par_q_50.0/$PBS_JOBNAME/mErrG.txt
 #PBS -m abe -M navah@uchicago.edu
 # set the number of nodes to use, and number of processors
 # to use per node
@@ -39,12 +39,13 @@ module load intel/intel-12
 module load mpi/mvapich2/intel
 
 set PARAM_RESTART='0'
-# set PARAM_PATH='/data/navah/fp_output/par_k_10_s_100_h_600/par_q_30.0/'$PBS_JOBNAME'/'
-set PARAM_PATH='/data/navah/fp_output/oc_k_10_s_100_h_200/par_q_1.0/'$PBS_JOBNAME'/'
+# set PARAM_PATH='/data/navah/fp_output/par_k_10_s_100_h_600/par_q_10.0/'$PBS_JOBNAME'/'
+set PARAM_PATH='/data/navah/fp_output/od_k_10_s_100_h_200_ts/par_q_50.0/'$PBS_JOBNAME'/'
 set PARAM_CRASHSTEP='2'
 
 
 # model parameters go here i guess
+### 550 for h=200, 750 for h=400
 set PARAM_O         = '550'
 set PARAM_W         = '300'
 set PARAM_W_RHS     = '25'
@@ -61,7 +62,7 @@ set PARAM_F_POR     = '2.5e-5'
 # flow_piece runtime parameters
 set PARAM_H         = '200' # [m]
 set PARAM_H_S       = '250' # [m]
-set PARAM_MYR_FIX   = '1.0' # [m/yr]
+set PARAM_MYR_FIX   = '50.0' # [m/yr]
 set PARAM_Q_LITH    = '0.1' # [W/m^2]
 #set PARAM_CRUST_AGE = '1.00' # [Myr]
 set PARAM_AGE_ONLY  = '1'   # toggle

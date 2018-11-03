@@ -148,7 +148,8 @@ read (param_age_only_string, *) param_age_only
 if (param_age_only .eq. 1.0) then
 	param_q_lith = (510.0 * (param_crust_age**(-0.5))) / 1000.0
 	! param_h_s = param_crust_age * 200.0
-	param_h_s = 100.0 + (param_crust_age * 100.0)
+    ! from 0.0 + to 25.0 + from oc_ to od_
+	param_h_s = 25.0 + (param_crust_age * 100.0)
 end if
 
 

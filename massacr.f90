@@ -20,7 +20,7 @@ use initialize
 implicit none
 
 include 'mpif.h'
-INCLUDE "IPhreeqc.f90.inc"
+! INCLUDE "IPhreeqc.f90.inc"
 save
 
 ! functions within massacr.f90
